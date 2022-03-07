@@ -90,5 +90,47 @@ musicPlayer.properties
 ```
 
 ```
+ <property name="musics">
+            <list>
+                <ref bean="rockMusic"/>
+                <ref bean="classicalMusic"/>
+            </list>
+ </property>
+        
+ <property name="name" value="${musicPlayer.name}"/>
+ <property name="volume" value="${musicPlayer.volume}"/>
+```
 
+```
+public class MusicPlayer {
+    // Music is an interface
+    private Music music;
+    private List<Music> musics;
+
+    private String name;
+    private int volume;
+
+    public void playMusic() {
+        System.out.println("Playing: " + music.getSong());
+    }
+
+    public void playAllMusic() {
+        musics.forEach(music -> System.out.println("Playing: " + music.getSong()));
+    }
+```
+
+```
+public static void main(String[] args) {
+        final var context = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        final var musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+
+        musicPlayer.playMusic();
+        musicPlayer.playAllMusic();
+
+        System.out.println(musicPlayer.getName());
+        System.out.println(musicPlayer.getVolume());
+
+        context.close();
+    }
 ```
