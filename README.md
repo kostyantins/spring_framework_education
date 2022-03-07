@@ -27,7 +27,8 @@ public class MusicPlayer {
 
 ## Dependency injection
 
-- Using XML
+### Using XML
+- Dependency injection via constructor:
 
 ```
      <bean id="musicBean"
@@ -44,4 +45,50 @@ public class MusicPlayer {
 ```
     MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
     musicPlayer.playMusic();
+```
+
+- Dependency injection of object via setter method:
+
+```
+<bean id="musicPlayer"
+      class="com.spring.education.MusicPlayer">
+      <property name="music" ref="musicBean"/>
+      
+       <property name="name" value="Some name"/>
+       <property name="volume" value="50"/>
+</bean>
+```
+
+```
+    final var musicPlayerViaSetter = new MusicPlayer();
+ 
+    Music classical = new ClassicalMusic();
+    musicPlayerViaSetter.setMusic(classical);
+
+    musicPlayerViaSetter.playMusic();
+```
+
+- Dependency injection of variables via setter method
+
+```
+    final var musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+
+    musicPlayer.playMusic();
+
+    System.out.println(musicPlayer.getName());
+    System.out.println(musicPlayer.getVolume());
+```
+
+- Dependency injection of variables via .properties file
+
+```
+musicPlayer.properties
+```
+
+```
+<context:property-placeholder location="classpath:musicPlayer.properties"/>
+```
+
+```
+
 ```

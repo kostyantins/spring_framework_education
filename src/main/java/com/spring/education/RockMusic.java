@@ -1,5 +1,8 @@
 package com.spring.education;
 
+import lombok.ToString;
+
+@ToString
 public class RockMusic implements Music{
 
     @Override
