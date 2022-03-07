@@ -1,5 +1,12 @@
 # Spring framework basic education
 
+## Contents:
+1. Inversion of Control (IoC) 
+
+2. Dependency injection
+
+3. Bean scope
+
 ## Inversion of Control (IoC)
 
  - Manual inversion of control
@@ -134,3 +141,12 @@ public static void main(String[] args) {
         context.close();
     }
 ```
+
+## Bean scope
+
+ Scopes:
+    - singleton - used by default
+    - prototype
+    - request
+    - session
+    - global-session

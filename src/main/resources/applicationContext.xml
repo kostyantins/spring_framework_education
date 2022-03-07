@@ -9,8 +9,8 @@
 
     <bean id="rockMusic" class="com.spring.education.RockMusic"/>
     <bean id="classicalMusic" class="com.spring.education.ClassicalMusic"/>
-    <bean id="musicPlayer" class="com.spring.education.MusicPlayer">
 
+    <bean id="musicPlayer" class="com.spring.education.MusicPlayer" scope="prototype">
         <!-- Dependency injection via constructor-->
         <!--<constructor-arg ref="musicBean"/>-->
 
