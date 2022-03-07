@@ -145,8 +145,8 @@ public static void main(String[] args) {
 ## Bean scope
 
  Scopes:
-    - singleton - used by default
-    - prototype
+    - singleton - used by default (all created objects will have the same reference)
+    - prototype - creates different objects
     - request
     - session
     - global-session
