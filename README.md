@@ -131,7 +131,7 @@ public class MusicPlayer {
 ```
 
 ```
-public static void main(String[] args) {
+    public static void main(String[] args) {
         final var context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         final var musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
@@ -189,6 +189,12 @@ public static void main(String[] args) {
  
 ## Spring annotations
  - **@Component** - pointing Spring to the class that needs to be created as a bean
+ 
+ For the Spring to be able to looking for components annotations we need to add the line to the applicationContext.xml
+```
+    <context:component-scan base-package="com.spring.education"/>
+```
+
 ```
    @Component
    public class ClassicalMusic implements Music {
