@@ -1,6 +1,7 @@
 package com.spring.education;
 
 import lombok.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -8,6 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
+@Component
 public class MusicPlayer {
     // Music is an interface
     private Music music;
@@ -17,9 +19,9 @@ public class MusicPlayer {
     private int volume;
 
     // IoC via constructor without lombok
-//    public MusicPlayer(Music music) {
-//        this.music = music;
-//    }
+    public MusicPlayer(Music music) {
+        this.music = music;
+    }
 
     public void playMusic() {
         System.out.println("Playing: " + music.getSong());

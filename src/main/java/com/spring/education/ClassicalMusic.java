@@ -1,15 +1,18 @@
 package com.spring.education;
 
 import lombok.ToString;
+import org.springframework.stereotype.Component;
 
 @ToString
+@Component
 public class ClassicalMusic implements Music {
 
-    private ClassicalMusic() {}
-
-    public static ClassicalMusic getClassicalMusic (){
-        return new ClassicalMusic();
-    }
+//    private ClassicalMusic() {
+//    }
+//
+//    public static ClassicalMusic getClassicalMusic() {
+//        return new ClassicalMusic();
+//    }
 
     public void beforeMethod() {
         System.out.println("Doing initialization of ClassicalMusic");

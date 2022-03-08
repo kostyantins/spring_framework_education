@@ -1,10 +1,15 @@
 # Spring framework basic education
 
 ## Contents:
-1. Inversion of Control (IoC)
-2. Dependency injection
-3. Bean scope
-4. Bean lifecycle (init, destroy, factory methods)
+**[1. Inversion of Control (IoC)](#nversion-of-control-(IoC))**
+
+**[2. Dependency injection](#dependency-injection)**
+
+**[3. Bean scope](#bean-scope)**
+
+**[4. Bean lifecycle (init, destroy, factory methods)](#bean-lifecycle-init-destroy-factory-methods)**
+
+**[5. Spring annotations](#spring-annotations)**
 
 ## Inversion of Control (IoC)
 
@@ -181,3 +186,12 @@ public static void main(String[] args) {
     }
 ```
  **NOTE:** Spring doesn't start destroy-method for a bean with prototype scope
+ 
+## Spring annotations
+ - **@Component** - pointing Spring to the class that needs to be created as a bean
+```
+   @Component
+   public class ClassicalMusic implements Music {
+...
+```
+
