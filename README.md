@@ -1,11 +1,10 @@
 # Spring framework basic education
 
 ## Contents:
-1. Inversion of Control (IoC) 
-
+1. Inversion of Control (IoC)
 2. Dependency injection
-
 3. Bean scope
+4. Bean lifecycle (init, destroy, factory methods)
 
 ## Inversion of Control (IoC)
 
@@ -144,9 +143,41 @@ public static void main(String[] args) {
 
 ## Bean scope
 
- Scopes:
-    - singleton - used by default (all created objects will have the same reference)
-    - prototype - creates different objects
-    - request
-    - session
-    - global-session
+ **Scopes:**
+ - **singleton** - used by default (all created objects will have the same reference) 
+ - **prototype** - creates different objects with different references
+ - **request**
+ - **session**
+ - **global-session**
+ 
+## Bean lifecycle (init, destroy, factory methods)
+
+### Init method
+ Starts working on a step of bean initialization (kind of before all action: call resources, files, DB)
+
+### Destroy method
+ Same as init but works after all (kind of after all action)
+
+    <bean id="classicalMusic"
+          class="com.spring.education.ClassicalMusic"
+          init-method="beforeMethod"
+          destroy-method="afterMethod"
+          factory-method="getClassicalMusic"
+    </beans>
+
+```
+    private ClassicalMusic() {}
+
+    public static ClassicalMusic getClassicalMusic (){
+        return new ClassicalMusic();
+    }
+
+    public void beforeMethod(){
+        System.out.println("Doing initialization of ClassicalMusic");
+    }
+
+    public void afterMethod(){
+        System.out.println("Doing deconstructionist of ClassicalMusic");
+    }
+```
+ **NOTE:** Spring doesn't start destroy-method for a bean with prototype scope
