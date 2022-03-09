@@ -1,6 +1,7 @@
 # Spring framework basic education
 
 ## Contents:
+
 **[1. Inversion of Control (IoC)](#nversion-of-control-(IoC))**
 
 **[2. Dependency injection](#dependency-injection)**
@@ -13,7 +14,8 @@
 
 ## Inversion of Control (IoC)
 
- - Manual inversion of control
+- Manual inversion of control
+
 ```
 public class MusicPlayer {
     // Music an interface
@@ -29,7 +31,9 @@ public class MusicPlayer {
     }
 }
 ```
- - Execution
+
+- Execution
+
 ```
     final var music = context.getBean("musicBean", Music.class);
     MusicPlayer musicPlayer = new MusicPlayer(music);
@@ -39,6 +43,7 @@ public class MusicPlayer {
 ## Dependency injection
 
 ### Using XML
+
 - Dependency injection via constructor:
 
 ```
@@ -148,20 +153,23 @@ public class MusicPlayer {
 
 ## Bean scope
 
- **Scopes:**
- - **singleton** - used by default (all created objects will have the same reference) 
- - **prototype** - creates different objects with different references
- - **request**
- - **session**
- - **global-session**
- 
+**Scopes:**
+
+- **singleton** - used by default (all created objects will have the same reference)
+- **prototype** - creates different objects with different references
+- **request**
+- **session**
+- **global-session**
+
 ## Bean lifecycle (init, destroy, factory methods)
 
 ### Init method
- Starts working on a step of bean initialization (kind of before all action: call resources, files, DB)
+
+Starts working on a step of bean initialization (kind of before all action: call resources, files, DB)
 
 ### Destroy method
- Same as init but works after all (kind of after all action)
+
+Same as init but works after all (kind of after all action)
 
     <bean id="classicalMusic"
           class="com.spring.education.ClassicalMusic"
@@ -185,12 +193,15 @@ public class MusicPlayer {
         System.out.println("Doing deconstructionist of ClassicalMusic");
     }
 ```
- **NOTE:** Spring doesn't start destroy-method for a bean with prototype scope
- 
+
+**NOTE:** Spring doesn't start destroy-method for a bean with prototype scope
+
 ## Spring annotations
- - **@Component** - pointing Spring to the class that needs to be created as a bean
- 
- For the Spring to be able to looking for components annotations we need to add the line to the applicationContext.xml
+
+- **@Component** - pointing Spring to the class that needs to be created as a bean/object
+
+For the Spring to be able to looking for components annotations we need to add the line to the applicationContext.xml
+
 ```
     <context:component-scan base-package="com.spring.education"/>
 ```
@@ -201,3 +212,46 @@ public class MusicPlayer {
 ...
 ```
 
+- **@Autowired** - dependency injection using annotation development. Such annotation can be used for variables, setter
+  methods, constructors
+  **NOTE:** Throws an exception when we have two beans applied for dependency injection
+
+```
+   @Autowired
+   private Music music;
+```
+
+```
+   @Autowired
+   public MusicPlayer(Music music) {
+        this.music = music;
+    }
+    
+    or with Lombok
+    
+    @AllArgsConstructor(onConstructor = @__(@Autowired))
+```
+
+```
+   @Setter(onMethod=@__({@Autowired}))
+   @Setter(onParam = @__({@Autowired}))
+```
+
+- **@Qualifier** - to say what expectantly bean needs to be used. Such annotation can be used for variables, setter
+  methods, constructors
+
+```
+@Component
+public class MusicPlayer {
+
+    private final Music music_01;
+    private final Music music_02;
+
+    @Autowired
+    public MusicPlayer(@Qualifier("classicalMusic") Music music_01,
+                       @Qualifier("rockMusic") Music music_02) {
+        this.music_01 = music_01;
+        this.music_02 = music_02;
+    }
+...
+```
