@@ -255,3 +255,51 @@ public class MusicPlayer {
     }
 ...
 ```
+
+- **@Scope** - the scope of beans
+
+```
+@Scope("singleton")
+@Scope("prototype")
+```
+
+- **@Value** - spring properties values
+
+```
+@Value("${musicPlayer.name}")
+private String name;
+@Value("${musicPlayer.value}")
+private int value;
+```
+
+- **@PostConstruct** - before method
+
+```
+@PostConstruct
+public void beforeMethod() {
+        System.out.println("Doing initialization of ClassicalMusic");
+   }
+```
+
+- **@PreDestroy** - after method
+
+```
+@PreDestroy
+public void afterMethod() {
+        System.out.println("Doing deconstructionist of ClassicalMusic");
+   }
+```
+
+- **@Configuration** - equals applicationContext.xml
+
+- **@ComponentScan** - equals <context:component-scan base-package="com.spring.education"/>
+
+```
+@ComponentScan("com.spring.education")
+```
+
+- **@PropertySource** - equals <context:property-placeholder location="classpath:musicPlayer.properties"/>
+
+```
+@PropertySource("classpath:musicPlayer.properties")
+```

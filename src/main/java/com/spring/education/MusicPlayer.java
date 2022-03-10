@@ -1,11 +1,22 @@
 package com.spring.education;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 @Component
+@Scope("prototype")
+@Getter
 public class MusicPlayer {
+
+    @Value("${musicPlayer.name}")
+    private String name;
+    @Value("${musicPlayer.value}")
+    private int value;
+
 
     private final Music music_01;
     private final Music music_02;
